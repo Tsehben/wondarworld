@@ -27,6 +27,7 @@ def index():
             db.session.commit()
             return redirect("/")
         except:
+            db.session.rollback()
             return "There was an error adding your task"
        
     else:
