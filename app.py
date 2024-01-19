@@ -22,6 +22,7 @@ def index():
     if request.method == "POST":
         task_content = request.form.get("task")
         new_task = Todo(content = task_content)
+      
         try:
             db.session.add(new_task)
             db.session.commit()
@@ -58,7 +59,11 @@ def update(id):
             return "Unable to Update"
     else:
         
-        return render_template("update.html", task= task)
+        return render_template("update.html", task= task,status="active")
+    
+@app.route('/about', methods=["POST","GET"])
+def about():
+    return render_template("about.html")
 
 if __name__ == '__main__':
     app.run(debug=True)
